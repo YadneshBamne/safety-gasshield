@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #1a1a2e;
+  --color-brand-secondary: #2a2a4a;
+  --color-brand-accent: #f97316;
+  --color-brand-accent-hover: #ea580c;
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Bodoni URW", "Bodoni Moda", serif;
+  --font-primary: "Bodoni URW", "Bodoni Moda", serif;
+  --font-secondary: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f4f4f5;
+  color: #1a1a2e;
+  overflow-x: hidden;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
