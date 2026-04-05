@@ -1,28 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ChevronRight, Shield, Download, ShieldCheck, Factory, Globe2, Anchor, ArrowRight } from 'lucide-react';
 import { RevealOnScroll } from './RevealOnScroll';
 import StorytellingIntro from './StorytellingIntro';
 
-export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
-  const [introComplete, setIntroComplete] = useState(false);
-
-  useEffect(() => {
-    setHomeIntroComplete?.(false);
-  }, [setHomeIntroComplete]);
-
+export default function HomePage({ setCurrentPage }) {
   return (
     <>
-      <StorytellingIntro
-        onComplete={() => {
-          setIntroComplete(true);
-          setHomeIntroComplete?.(true);
-        }}
-      />
+      <StorytellingIntro />
 
-      {introComplete && (
-        <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-black overflow-hidden pt-20">
+      {/* <section className="relative min-h-[90vh] flex items-center justify-center bg-black overflow-hidden pt-20">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1541888081622-19e48ea112b0?q=80&w=2070&auto=format&fit=crop" 
@@ -56,10 +43,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             </div>
           </RevealOnScroll>
         </div>
-      </section>
+      </section> */}
 
       {/* Trust Strip */}
-      <section className="py-12 bg-[#861719] border-y border-[#E63630]/20">
+      {/* <section className="py-12 bg-[#861719] border-y border-[#E63630]/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
             <div className="px-4">
@@ -80,10 +67,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* About Preview */}
-      <section className="py-24 bg-white relative">
+      {/* <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -126,10 +113,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services / Offerings */}
-      <section className="py-24 bg-[#111]">
+      {/* <section className="py-24 bg-[#111]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <RevealOnScroll className="text-center max-w-3xl mx-auto mb-16">
             <h3 className="text-[#E63630] font-secondary font-medium uppercase tracking-widest mb-2">Our Offerings</h3>
@@ -163,10 +150,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Project / Impact Style */}
-      <section className="py-24 bg-white relative">
+      {/* <section className="py-24 bg-white relative">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-[#f4f4f5] hidden lg:block" style={{ clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%)' }}></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
@@ -205,10 +192,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
              </RevealOnScroll>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process / Facility */}
-      <section className="py-24 bg-black relative border-y border-white/10">
+      {/* <section className="py-24 bg-black relative border-y border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <RevealOnScroll>
@@ -234,10 +221,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Safety Statement Signature */}
-      <section className="py-32 bg-[#E63630] relative overflow-hidden flex items-center justify-center text-center">
+      {/* <section className="py-32 bg-[#E63630] relative overflow-hidden flex items-center justify-center text-center">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#861719_0%,_#E63630_100%)]"></div>
         <div className="relative z-10 max-w-5xl mx-auto px-6">
           <RevealOnScroll>
@@ -250,10 +237,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             </p>
           </RevealOnScroll>
         </div>
-      </section>
+      </section> */}
 
       {/* Global Section */}
-      <section className="py-24 bg-[#111]">
+      {/* <section className="py-24 bg-[#111]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <RevealOnScroll>
              <Globe2 className="w-16 h-16 text-[#E63630] mx-auto mb-6" />
@@ -265,10 +252,10 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
              </p>
           </RevealOnScroll>
         </div>
-      </section>
+      </section> */}
 
       {/* Final CTA */}
-      <section className="py-24 bg-white border-t border-gray-200">
+      {/* <section className="py-24 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
           <RevealOnScroll>
             <h2 className="text-4xl md:text-6xl font-primary italic font-medium text-black mb-6">
@@ -282,9 +269,7 @@ export default function HomePage({ setCurrentPage, setHomeIntroComplete }) {
             </button>
           </RevealOnScroll>
         </div>
-      </section>
-        </>
-      )}
+      </section> */}
     </>
   );
 }

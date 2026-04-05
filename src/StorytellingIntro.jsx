@@ -88,7 +88,7 @@ function Waveform({ active }) {
 }
 
 /* ════════════════════════════════════════════════════════════════════════ */
-export default function StorytellingIntro() {
+export default function StorytellingIntro({ onComplete }) {
   const [scene, setScene]         = useState(0);
   const [logoError, setLogoError] = useState(false);
   const [muted, setMuted]         = useState(false);
@@ -123,7 +123,11 @@ export default function StorytellingIntro() {
     if (mutedRef.current) {
       timerRef.current = setTimeout(() => {
         if (currScene.current === sceneIdx && goToRef.current) {
-          goToRef.current((sceneIdx + 1) % TOTAL);
+          if (sceneIdx + 1 >= TOTAL) {
+            onComplete?.();
+          } else {
+            goToRef.current(sceneIdx + 1);
+          }
         }
       }, SCENE_HOLD_MS[sceneIdx]);
       return;
@@ -159,7 +163,11 @@ export default function StorytellingIntro() {
       
       // Exactly when speech finishes, go to the next scene
       if (currScene.current === sceneIdx && goToRef.current) {
-        goToRef.current((sceneIdx + 1) % TOTAL);
+        if (sceneIdx + 1 >= TOTAL) {
+          onComplete?.();
+        } else {
+          goToRef.current(sceneIdx + 1);
+        }
       }
     };
 
@@ -425,7 +433,7 @@ export default function StorytellingIntro() {
           It's woven into everything we make, every partnership we form. We stay close to our customers — transparent, accessible, and always just a call away.
         </p>
         <button
-          onClick={e => e.stopPropagation()}
+          onClick={e => { e.stopPropagation(); onComplete?.(); }}
           style={{ padding:'11px 30px', borderRadius:99, background:'linear-gradient(135deg,#E63630,#861719)', border:'1px solid rgba(230,54,48,0.5)', color:'white', fontSize:11, letterSpacing:'0.22em', textTransform:'uppercase', fontWeight:600, cursor:'pointer', boxShadow:'0 0 28px rgba(230,54,48,0.35), inset 0 1px 0 rgba(255,255,255,0.14)', transition:'all 0.3s ease' }}
           onMouseEnter={e => { e.currentTarget.style.boxShadow='0 0 50px rgba(230,54,48,0.55), inset 0 1px 0 rgba(255,255,255,0.14)'; e.currentTarget.style.transform='translateY(-2px)'; }}
           onMouseLeave={e => { e.currentTarget.style.boxShadow='0 0 28px rgba(230,54,48,0.35), inset 0 1px 0 rgba(255,255,255,0.14)'; e.currentTarget.style.transform='translateY(0)'; }}
