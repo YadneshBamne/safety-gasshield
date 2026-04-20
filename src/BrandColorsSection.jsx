@@ -83,7 +83,7 @@ export default function BrandColorsSection() {
           .to(others, { opacity: 0.25, scale: 0.95, duration: 6, ease: "power2.out" }, "<")
           .to(bgOverlayRef.current, { backgroundColor: colors[i].focusBg, opacity: 1, duration: 6 }, "<")
           
-          // Sustain
+          // Sustain 
           .to({}, { duration: 4 })
           
           // Undo Highlight
