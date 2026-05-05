@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Shield, Download, ShieldCheck, Factory, Globe2, Anchor, ArrowRight } from 'lucide-react';
+import { ChevronRight, Shield, Download, ShieldCheck, Factory, Globe2, Anchor, ArrowRight, AlertCircle } from 'lucide-react';
 import { RevealOnScroll } from './RevealOnScroll';
 import { StorytellingIntro } from './StorytellingIntro';
 
@@ -8,8 +8,29 @@ export default function HomePage({ setCurrentPage }) {
     <>
       <StorytellingIntro />
 
-      {/* Brand Commitment Section with Overlapping Card */}
-      <section className="relative py-24 md:py-32 bg-[#060608] mt-0 lg:mt-0 border-t border-white/10">
+      {/* Trust Badges Bar */}
+      {/* <section className="py-12 bg-[#060608] relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <RevealOnScroll className="w-full">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center max-w-5xl mx-auto opacity-90">
+              {[
+                { text: "ISO 9001:2015 TÜV NORD Certified", icon: ShieldCheck },
+                { text: "Serving India Since 1967", icon: Factory },
+                { text: "BIS Standard Compliant Products", icon: Anchor },
+                { text: "Trusted by Leading Gas Companies Across India", icon: Globe2 }
+              ].map((badge, i) => (
+                <div key={i} className="flex flex-col items-center gap-4">
+                  <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-[#E63630] bg-white/5 backdrop-blur-sm group-hover:bg-[#E63630] group-hover:text-white transition-colors">
+                    <badge.icon className="w-6 h-6" strokeWidth={1.5} />
+                  </div>
+                  <span className="text-xs md:text-sm text-white/80 font-sans uppercase tracking-wider leading-relaxed max-w-[200px]">{badge.text}</span>
+                </div>
+              ))}
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>       */}
+      <section className="relative py-24 md:py-32 bg-[#060608] mt-0 lg:mt-0 ">
         <div className="absolute inset-0 pointer-events-none opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           
@@ -46,29 +67,24 @@ export default function HomePage({ setCurrentPage }) {
           <div className="w-full lg:w-[55%] ml-auto text-left lg:pl-12 py-10 lg:py-0 relative z-10">
             <RevealOnScroll>
               <h2 className="text-3xl md:text-3xl lg:text-[40px] xl:text-[44px] text-white mb-10 leading-[1.3] tracking-wide" style={{ fontFamily: "'Gambarino', serif" }}>
-                Why partner with us for your safety-critical operations?
+                Over 55 Years of Protecting What Matters Most
               </h2>
             </RevealOnScroll>
             
             <RevealOnScroll delay="delay-100">
-              <ul className="space-y-8 md:space-y-10">
-                {[
-                  { title: "Precision Engineering", desc: "Rigorous quality control processes guaranteeing that every component functions flawlessly under extreme pressure.", icon: Shield },
-                  { title: "Industry Proven Expertise", desc: "Over 50 years of trusted, hands-on manufacturing experience across diverse industrial applications.", icon: Factory },
-                  { title: "Global Safety Standards", desc: "Certified engineering solutions meeting and exceeding rigorous international regulatory requirements.", icon: Globe2 }
-                ].map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-5 md:gap-6 group cursor-pointer relative">
-                    <div className="absolute -left-4 md:-left-6 top-0 bottom-0 w-[2px] bg-[#E63630] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top ease-out"></div>
-                    <div className="mt-1 bg-white/5 p-3 md:p-4 rounded-xl border border-white/10 shrink-0 transition-all duration-300 group-hover:border-[#E63630]/60 group-hover:bg-[#E63630]/20 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[0_0_25px_rgba(230,54,48,0.3)]">
-                      <feature.icon className="h-6 w-6 md:h-7 md:w-7 text-[#E63630] transition-colors duration-300 group-hover:text-white" />
-                    </div>
-                    <div className="transition-transform duration-500 group-hover:translate-x-2 ease-out">
-                      <h4 className="text-white font-secondary font-bold tracking-wider text-xl md:text-2xl mb-2 transition-colors duration-300 group-hover:text-[#E63630]">{feature.title}</h4>
-                      <p className="text-white/60 font-secondary text-sm md:text-base leading-relaxed transition-colors duration-300 group-hover:text-white/90">{feature.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-6 text-white/80 font-sans text-base md:text-lg leading-relaxed">
+                <p>
+                  Founded in 1967 by Shri Indrajeet Bhutani, Standard Engineers laid the foundation for a new standard in gas cylinder safety in India. Today, under the dynamic leadership of Mr. Rajan Bhutani and Mr. Devanshu Bhutani, the company has grown into Standard Gasshield Pvt. Ltd. — India's most trusted name in cylinder handling equipment, valve protection guards, and gas safety accessories.
+                </p>
+                <p>
+                  Operating from our modern manufacturing facility at Mahalaxmi Industrial Estate, Sanand, Ahmedabad, we combine decades of expertise with advanced manufacturing processes including CNC Turning, Powder Coating, and MIG Welding & Automation — ensuring every product meets the highest safety and quality benchmarks.
+                </p>
+              </div>
+              <div className="mt-10">
+                <button onClick={() => setCurrentPage?.('about')} className="text-[#E63630] font-bold tracking-widest uppercase text-sm hover:text-white transition-colors flex items-center gap-2">
+                  Read Our Full Story <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </RevealOnScroll>
           </div>
 
@@ -115,19 +131,20 @@ export default function HomePage({ setCurrentPage }) {
       {/* Stats Section */}
       <section className="py-24 md:py-32 bg-white relative z-10 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-y-0 divide-x-0 md:divide-x divide-gray-200">
             {[
-              { number: "50+", label: "Years in Business" },
-              { number: "1,000+", label: "Clients Served Worldwide" },
-              { number: "ISO 9001", label: "Certified Manufacturing" }
+              { number: "55+", label: "Years of Industry Experience" },
+              { number: "1967", label: "Year Founded" },
+              { number: "ISO 9001:2015", label: "TÜV NORD Certified", isText: true },
+              { number: "Pan-India", label: "Supply & Distribution", isText: true }
             ].map((stat, idx) => (
               <RevealOnScroll key={idx} delay={`delay-${idx * 100}`}>
-                <div className="text-center py-8 md:py-0 group cursor-default">
-                  <div className="inline-block relative">
-                    <h3 className="relative z-10 text-5xl md:text-7xl font-bold text-[#E63630] mb-6 tracking-tight transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2 group-hover:drop-shadow-[0_10px_20px_rgba(230,54,48,0.3)]" style={{ fontFamily: "'Gambarino', serif" }}>{stat.number}</h3>
+                <div className="text-center py-4 md:py-0 group cursor-default">
+                  <div className="inline-block relative mb-4">
+                    <h3 className={`relative z-10 ${stat.isText ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-5xl md:text-6xl lg:text-7xl'} font-bold text-[#E63630] tracking-tight transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2`} style={{ fontFamily: "'Gambarino', serif" }}>{stat.number}</h3>
                     <div className="absolute inset-0 bg-[#E63630] opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 rounded-full scale-150 pointer-events-none"></div>
                   </div>
-                  <p className="text-black font-secondary font-bold uppercase tracking-[0.2em] text-xs md:text-sm transition-colors duration-500 group-hover:text-[#E63630]">{stat.label}</p>
+                  <p className="text-black font-secondary font-bold uppercase tracking-[0.2em] text-xs md:text-sm transition-colors duration-500 group-hover:text-[#E63630] max-w-[200px] mx-auto">{stat.label}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -168,18 +185,210 @@ export default function HomePage({ setCurrentPage }) {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <section className="py-32 md:py-40 bg-[#060608] relative overflow-hidden flex items-center justify-center border-t border-[#060608]">
+      {/* Product Categories Section */}
+      <section className="py-24 md:py-32 bg-[#060608] relative z-10 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <RevealOnScroll>
+            <div className="text-center mb-16 md:mb-24">
+              <span className="text-[#E63630] text-sm font-semibold tracking-[0.3em] uppercase font-secondary mb-4 block">
+                Our Offerings
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 tracking-wide" style={{ fontFamily: "'Gambarino', serif" }}>
+                Our Product Range
+              </h2>
+              <p className="text-white/60 font-sans text-lg max-w-2xl mx-auto">
+                Engineered for safety. Built for reliability. Designed for the gas industry.
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            {[
+              {
+                title: "Valve Protection Guards",
+                desc: "Our signature range of SE Series Valve Protection Guards for high-pressure industrial gas cylinders, available in Parallel and Conical types for Oxygen, CO₂, Nitrogen, Argon, Hydrogen, Acetylene, and Refrigerant gases.",
+                bullets: ["SE Lite, SE Durable, SE Mighty (Parallel Series)", "SE Stalwart 01–04 (Conical Series)", "SE DA Series (Dissolved Acetylene)", "SE H2 Series (Hydrogen & Fire Safety)"]
+              },
+              {
+                title: "Dome Type Caps",
+                desc: "The SE Dome Cap provides complete valve enclosure protection for all types of gas cylinders. Available in multiple colour options to comply with industrial gas colour coding standards. Suitable for cylinders with ID 80mm–125mm, Thread W80 11 TPI."
+              },
+              {
+                title: "Cylinder Handling Equipment & Trolleys",
+                desc: "Safe cylinder transportation is non-negotiable. Our powder-coated Single and Double Cylinder Trolleys are built for ease of movement and maximum stability, ensuring cylinders remain upright and secure during handling and transit."
+              },
+              {
+                title: "Pallets, Skids & Value Addition Products",
+                desc: "Custom-manufactured Cylinder Skids and Pallets for safe bulk storage and transport. Our value addition range includes Thermal Pressure Relief Valves, Cryogenic Hoses & End Connections, Cryo Regulator Cum Economizer, Cryogenic Globe Valves, Cylinder Valve Spindles, Forged Neck Rings, Testing Rings, Cylinder Connection Pig Tails, and more."
+              }
+            ].map((product, idx) => (
+              <RevealOnScroll key={idx} delay={`delay-${idx * 100}`}>
+                <div className="bg-white/5 border border-white/10 p-8 md:p-10 rounded-2xl hover:border-[#E63630]/50 transition-colors group flex flex-col h-full">
+                  <h3 className="text-2xl md:text-3xl text-white font-bold mb-4" style={{ fontFamily: "'Gambarino', serif" }}>{product.title}</h3>
+                  <p className="text-white/70 font-sans leading-relaxed mb-6 flex-grow">{product.desc}</p>
+                  {product.bullets && (
+                    <ul className="space-y-2 mb-8 flex-grow">
+                      {product.bullets.map((bullet, i) => (
+                        <li key={i} className="flex items-start gap-3 text-white/60 text-sm font-sans">
+                          <span className="text-[#E63630] mt-1">●</span> {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <button onClick={() => setCurrentPage?.('products')} className="mt-auto inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-white group-hover:text-[#E63630] transition-colors w-max">
+                    View Products <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-24 md:py-32 bg-white relative z-10 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <RevealOnScroll>
+            <div className="mb-16 md:mb-24 max-w-3xl">
+              <span className="text-[#E63630] text-sm font-semibold tracking-[0.3em] uppercase font-secondary mb-4 block">
+                The Standard Advantage
+              </span>
+              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-black mb-6 tracking-wide leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>
+                Why Industries Across India Choose Standard Gasshield
+              </h2>
+            </div>
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-12 md:gap-y-16">
+            {[
+              {
+                title: "Quality You Can Count On",
+                desc: "Every product is manufactured in-house using CNC Turning, MIG Welding & Automation, and Powder Coating — ensuring consistent quality, dimensional accuracy, and finish in every unit.",
+                icon: ShieldCheck
+              },
+              {
+                title: "Safety Is Our Language",
+                desc: "Our products are designed in strict compliance with BIS and international safety standards. We champion safe cylinder handling through education, proper equipment, and industry best practices.",
+                icon: Shield
+              },
+              {
+                title: "A Legacy of Trust",
+                desc: "Over 55 years of unbroken service to the Indian gas industry. Thousands of satisfied industrial clients. A brand synonymous with reliability, integrity, and safety.",
+                icon: Factory
+              },
+              {
+                title: "Certified Excellence",
+                desc: "ISO 9001:2015 TÜV NORD Certified — our quality management systems are independently verified to meet global standards.",
+                icon: ShieldCheck
+              },
+              {
+                title: "Customised Solutions",
+                desc: "We manufacture to specification. Whether it's a custom cylinder skid, a specific pallet design, or a non-standard guard dimension — our team works with you to deliver exactly what your operation requires.",
+                icon: Factory
+              },
+              {
+                title: "Nationwide Reach",
+                desc: "With a strong distribution network and reliable logistics, we ensure timely supply of products to gas companies, industrial facilities, and distributors across India.",
+                icon: Globe2
+              }
+            ].map((feature, idx) => (
+              <RevealOnScroll key={idx} delay={`delay-${(idx % 3) * 100}`}>
+                <div className="group">
+                  <div className="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300">
+                    <feature.icon className="w-7 h-7 text-[#E63630] group-hover:text-white transition-colors duration-300" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-black mb-4 font-secondary">{feature.title}</h3>
+                  <p className="text-gray-600 font-sans leading-relaxed">{feature.desc}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gas Safety Awareness Section */}
+      <section className="py-24 md:py-32 bg-[#060608] relative z-10 border-t border-white/10">
+        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+            <div className="w-full lg:w-1/2">
+              <RevealOnScroll>
+                <span className="text-[#E63630] text-sm font-semibold tracking-[0.3em] uppercase font-secondary mb-4 block">
+                  Safety First
+                </span>
+                <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-8 tracking-wide leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>
+                  Treat Every Cylinder With Respect — It Is A Sleeping Giant.
+                </h2>
+                <p className="text-white/70 font-sans text-lg leading-relaxed mb-10">
+                  At Standard Gasshield, safety is not just our business — it is our belief. We are committed to educating the industry on safe gas cylinder handling practices that prevent accidents, save lives, and protect property.
+                </p>
+                <button onClick={() => setCurrentPage?.('industries')} className="group relative bg-[#E63630] text-white hover:text-[#060608] px-8 py-4 rounded-full font-secondary uppercase tracking-[0.15em] font-bold text-xs transition-all duration-300 overflow-hidden inline-flex items-center justify-center gap-3">
+                  <span className="relative z-10">View Complete Safety Guidelines</span>
+                  <ArrowRight className="h-4 w-4 relative z-10" />
+                  <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out"></div>
+                </button>
+              </RevealOnScroll>
+            </div>
+            
+            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <RevealOnScroll delay="delay-100">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+                  <h3 className="text-[#4ADE80] font-bold text-xl mb-6 font-secondary uppercase tracking-widest flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-[#4ADE80]"></div> Key Do's
+                  </h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Always use proper cylinder handling trolleys",
+                      "Store cylinders upright and strap them securely",
+                      "Use protective valve guards or caps at all times",
+                      "Ensure personnel are trained in cylinder handling",
+                      "Handle cylinders as per IS standards approved by BIS"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-white/70 text-sm font-sans leading-relaxed">
+                        <ShieldCheck className="w-5 h-5 text-[#4ADE80] shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </RevealOnScroll>
+              
+              <RevealOnScroll delay="delay-200">
+                <div className="bg-[#E63630]/10 border border-[#E63630]/30 rounded-2xl p-8">
+                  <h3 className="text-[#E63630] font-bold text-xl mb-6 font-secondary uppercase tracking-widest flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-[#E63630]"></div> Key Don'ts
+                  </h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Never roll or drop cylinders on the ground",
+                      "Never lift a cylinder by its valve",
+                      "Never use leaking or damaged gas cylinders",
+                      "Never use wrong fittings — always verify specifications"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-white/70 text-sm font-sans leading-relaxed">
+                        <AlertCircle className="w-5 h-5 text-[#E63630] shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </RevealOnScroll>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA Banner Section */}
+      <section className="py-32 md:py-40 bg-[#060608] relative overflow-hidden flex items-center justify-center border-t border-white/10">
         <div className="absolute inset-0 pointer-events-none opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
-        {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E63630] opacity-[0.07] blur-[120px] rounded-full pointer-events-none animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]"></div> */}
         
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
           <RevealOnScroll>
             <h2 className="text-5xl md:text-6xl tracking-wider text-white mb-8" style={{ fontFamily: "'Gambarino', serif" }}>
-              Ready to secure your operations?
+              Ready to Make Your Operations Safer?
             </h2>
             <p className="text-lg md:text-xl font-secondary font-normal mb-14 text-white/60 max-w-2xl mx-auto leading-relaxed tracking-wide">
-              Get in touch with our engineering experts today to discuss tailored safety requirements or explore our full product range.
+              Get in touch with our team to discuss your cylinder handling requirements. We offer product consultations, custom manufacturing, and nationwide supply.
             </p>
           </RevealOnScroll>
           <RevealOnScroll delay="delay-100">
@@ -188,7 +397,7 @@ export default function HomePage({ setCurrentPage }) {
                 onClick={() => setCurrentPage?.('contact')}
                 className="group relative bg-[#E63630] text-white hover:text-[#060608] px-10 py-5 rounded-full font-secondary uppercase tracking-[0.15em] font-bold text-sm transition-all duration-300 shadow-[0_10px_30px_rgba(230,54,48,0.3)] hover:shadow-[0_10px_40px_rgba(255,255,255,0.4)] hover:-translate-y-1 w-full sm:w-auto overflow-hidden flex items-center justify-center gap-3"
               >
-                <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-1">Contact Us Now</span>
+                <span className="relative z-10 transition-transform duration-300 group-hover:-translate-x-1">Contact Our Sales Team</span>
                 <ArrowRight className="h-4 w-4 relative z-10 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                 <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out"></div>
               </button>
@@ -196,7 +405,7 @@ export default function HomePage({ setCurrentPage }) {
                 onClick={() => setCurrentPage?.('products')}
                 className="group relative bg-transparent border border-white/30 text-white px-10 py-5 rounded-full font-secondary uppercase tracking-[0.15em] font-bold text-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#E63630] hover:shadow-[0_0_20px_rgba(230,54,48,0.2)] w-full sm:w-auto overflow-hidden"
               >
-                <span className="relative z-10 group-hover:text-[#E63630] transition-colors duration-300">Browse Products</span>
+                <span className="relative z-10 group-hover:text-[#E63630] transition-colors duration-300">Request a Catalogue</span>
                 <div className="absolute inset-0 bg-[#E63630]/10 scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-300 ease-out"></div>
               </button>
             </div>

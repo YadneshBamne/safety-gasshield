@@ -7,6 +7,7 @@ import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import ProductsPage from './ProductsPage';
 import ContactPage from './ContactPage';
+import LegacyPage from './LegacyPage';
 import { StorytellingIntro } from './StorytellingIntro';
 
 const WaveformIcon = ({ isPlaying }) => (
@@ -71,6 +72,7 @@ export default function App() {
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Us' },
+    { id: 'our legacy', label: 'Our Legacy' },
     { id: 'products', label: 'Products' },
   ];
 
@@ -83,7 +85,7 @@ export default function App() {
     <div className="font-secondary font-medium text-black min-h-screen flex flex-col bg-[#f4f4f5] animate-[fadeIn_1s_ease-out]">
       
       <nav
-        className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ease-in-out ${
+        className={`fixed rounded-b-[2.5rem] top-0 left-0 right-0 z-100 transition-all duration-300 ease-in-out ${
           navVisible ? 'translate-y-0 ' : '-translate-y-full'
         } ${
           currentPage !== 'home' ? 'bg-[#f4f4f5] py-5  text-black ' : isScrolled ? 'bg-black/20 rounded-b-3xl backdrop-blur-sm py-5 text-white' : 'bg-transparent py-7 text-white'
@@ -240,6 +242,7 @@ export default function App() {
         {currentPage === 'about' && <AboutPage />}
         {currentPage === 'products' && <ProductsPage />}
         {currentPage === 'contact' && <ContactPage />}
+        {currentPage === 'our legacy' && <LegacyPage />}
       </main>
 
       <footer className="bg-white text-[#060608] py-12 md:py-16 relative overflow-hidden rounded-t-[2.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] border-t border-gray-100">

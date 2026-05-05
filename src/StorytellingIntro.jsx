@@ -418,21 +418,35 @@ const StorytellingIntro = () => {
           <div className="hero-title-container relative w-full h-full min-h-[400px]">
             {/* Intro Text Container */}
             <div 
-               className={`absolute inset-0 flex flex-col items-center justify-center space-y-6 pointer-events-none transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                 showIntro ? 'opacity-100 transform scale-100 z-50' : 'opacity-0 transform scale-90 z-0'
+               className={`absolute inset-0 flex flex-col items-center justify-center space-y-6 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                 showIntro ? 'opacity-100 transform scale-100 z-50' : 'opacity-0 transform scale-90 z-0 pointer-events-none'
                }`}
             >
-               <p className="text-sm md:text-base tracking-[0.4em] font-medium uppercase" style={{ color: 'var(--accent)', filter: 'drop-shadow(0 0 12px rgba(230,54,48,0.4))' }}>
+               <p className="text-sm md:text-base tracking-[0.4em] font-medium uppercase text-center mt-12 md:mt-0" style={{ color: 'var(--accent)', filter: 'drop-shadow(0 0 12px rgba(230,54,48,0.4))' }}>
                  The Story of Standard Gas Shield
                </p>
                <div className="w-16 h-[1px]" style={{ background: 'linear-gradient(to right, transparent, var(--accent), transparent)' }} />
                
-               <h2 className="text-6xl md:text-8xl lg:text-[96px] font-serif italic tracking-tight leading-[1.1] pb-2 text-center" style={{ fontFamily: 'Georgia, serif', color: 'var(--silver)' }}>
-                 A Legacy of <br />
+               <h2 className="text-4xl md:text-6xl lg:text-[72px] font-serif italic tracking-tight leading-[1.1] pb-2 text-center" style={{ fontFamily: 'Georgia, serif', color: 'var(--silver)' }}>
+                 Ensuring Safety. <br />
                  <span style={{ backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent', backgroundImage: 'linear-gradient(to bottom, #ffffff, rgba(255,255,255,0.4))' }}>
-                   Protection.
-                 </span>
+                   Engineering Trust.
+                 </span> <br />
+                 <span className="text-3xl md:text-5xl font-serif italic  mt-2 block tracking-wider">Since 1967.</span>
                </h2>
+               
+               <p className="max-w-2xl text-center text-white/80 font-sans text-base md:text-lg leading-relaxed px-4">
+                 India's leading manufacturer of cylinder handling equipment and gas safety solutions — trusted by industries across the nation for over five decades.
+               </p>
+               
+               <div className="flex flex-col sm:flex-row gap-4 mt-8 pointer-events-auto">
+                 <button className="px-8 py-3 bg-[#E63630] text-white rounded-full font-sans uppercase tracking-widest text-xs font-bold hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2" onClick={(e) => { e.stopPropagation(); /* handle navigation */ }}>
+                   Explore Our Products <span>→</span>
+                 </button>
+                 <button className="px-8 py-3 bg-transparent border border-white/30 text-white rounded-full font-sans uppercase tracking-widest text-xs font-bold hover:border-[#E63630] hover:text-[#E63630] transition-colors flex items-center justify-center gap-2" onClick={(e) => { e.stopPropagation(); /* handle navigation */ }}>
+                   Get In Touch <span>→</span>
+                 </button>
+               </div>
             </div>
             
             {/* Transcription Container */}
