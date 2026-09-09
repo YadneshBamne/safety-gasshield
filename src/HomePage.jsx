@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Shield, Download, ShieldCheck, Factory, Globe2, Anchor, ArrowRight, AlertCircle } from 'lucide-react';
+import { ChevronRight, Shield, Download, ShieldCheck, Factory, Globe2, Anchor, ArrowRight, AlertCircle, Package, Truck, Layers } from 'lucide-react';
 import { RevealOnScroll } from './RevealOnScroll';
 import { StorytellingIntro } from './StorytellingIntro';
 
@@ -206,35 +206,34 @@ export default function HomePage({ setCurrentPage }) {
             {[
               {
                 title: "Valve Protection Guards",
-                desc: "Our signature range of SE Series Valve Protection Guards for high-pressure industrial gas cylinders, available in Parallel and Conical types for Oxygen, CO₂, Nitrogen, Argon, Hydrogen, Acetylene, and Refrigerant gases.",
-                bullets: ["SE Lite, SE Durable, SE Mighty (Parallel Series)", "SE Stalwart 01–04 (Conical Series)", "SE DA Series (Dissolved Acetylene)", "SE H2 Series (Hydrogen & Fire Safety)"]
+                icon: Shield,
+                desc: "High-grade steel SE Series guards engineered to protect vulnerable cylinder valves from catastrophic impact during handling, storage, and transit."
               },
               {
                 title: "Dome Type Caps",
-                desc: "The SE Dome Cap provides complete valve enclosure protection for all types of gas cylinders. Available in multiple colour options to comply with industrial gas colour coding standards. Suitable for cylinders with ID 80mm–125mm, Thread W80 11 TPI."
+                icon: Package,
+                desc: "Complete 360-degree valve enclosure protection available in color-coded finishes meeting international industrial gas standards."
               },
               {
                 title: "Cylinder Handling Equipment & Trolleys",
-                desc: "Safe cylinder transportation is non-negotiable. Our powder-coated Single and Double Cylinder Trolleys are built for ease of movement and maximum stability, ensuring cylinders remain upright and secure during handling and transit."
+                icon: Truck,
+                desc: "Powder-coated ergonomic single and double trolleys designed to eliminate dangerous cylinder rolling and keep cylinders firmly upright."
               },
               {
                 title: "Pallets, Skids & Value Addition Products",
-                desc: "Custom-manufactured Cylinder Skids and Pallets for safe bulk storage and transport. Our value addition range includes Thermal Pressure Relief Valves, Cryogenic Hoses & End Connections, Cryo Regulator Cum Economizer, Cryogenic Globe Valves, Cylinder Valve Spindles, Forged Neck Rings, Testing Rings, Cylinder Connection Pig Tails, and more."
+                icon: Layers,
+                desc: "Custom-manufactured bulk storage pallets, certified hydrogen cylinder skids, cryogenic valves, and high-pressure manifold accessories."
               }
             ].map((product, idx) => (
               <RevealOnScroll key={idx} delay={`delay-${idx * 100}`}>
                 <div className="bg-white/5 border border-white/10 p-8 md:p-10 rounded-2xl hover:border-[#E63630]/50 transition-colors group flex flex-col h-full">
-                  <h3 className="text-2xl md:text-3xl text-white font-bold mb-4" style={{ fontFamily: "'Gambarino', serif" }}>{product.title}</h3>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#E63630] group-hover:bg-[#E63630] group-hover:text-white transition-colors shrink-0">
+                      <product.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl text-white font-bold" style={{ fontFamily: "'Gambarino', serif" }}>{product.title}</h3>
+                  </div>
                   <p className="text-white/70 font-sans leading-relaxed mb-6 flex-grow">{product.desc}</p>
-                  {product.bullets && (
-                    <ul className="space-y-2 mb-8 flex-grow">
-                      {product.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-3 text-white/60 text-sm font-sans">
-                          <span className="text-[#E63630] mt-1">●</span> {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                   <button onClick={() => setCurrentPage?.('products')} className="mt-auto inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-white group-hover:text-[#E63630] transition-colors w-max">
                     View Products <ArrowRight className="w-4 h-4" />
                   </button>
@@ -302,78 +301,6 @@ export default function HomePage({ setCurrentPage }) {
                 </div>
               </RevealOnScroll>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gas Safety Awareness Section */}
-      <section className="py-24 md:py-32 bg-[#060608] relative z-10 border-t border-white/10">
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
-            <div className="w-full lg:w-1/2">
-              <RevealOnScroll>
-                <span className="text-[#E63630] text-sm font-semibold tracking-[0.3em] uppercase font-secondary mb-4 block">
-                  Safety First
-                </span>
-                <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-8 tracking-wide leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>
-                  Treat Every Cylinder With Respect — It Is A Sleeping Giant.
-                </h2>
-                <p className="text-white/70 font-sans text-lg leading-relaxed mb-10">
-                  At Standard Gasshield, safety is not just our business — it is our belief. We are committed to educating the industry on safe gas cylinder handling practices that prevent accidents, save lives, and protect property.
-                </p>
-                <button onClick={() => setCurrentPage?.('industries')} className="group relative bg-[#E63630] text-white hover:text-[#060608] px-8 py-4 rounded-full font-secondary uppercase tracking-[0.15em] font-bold text-xs transition-all duration-300 overflow-hidden inline-flex items-center justify-center gap-3">
-                  <span className="relative z-10">View Complete Safety Guidelines</span>
-                  <ArrowRight className="h-4 w-4 relative z-10" />
-                  <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out"></div>
-                </button>
-              </RevealOnScroll>
-            </div>
-            
-            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <RevealOnScroll delay="delay-100">
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-                  <h3 className="text-[#4ADE80] font-bold text-xl mb-6 font-secondary uppercase tracking-widest flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#4ADE80]"></div> Key Do's
-                  </h3>
-                  <ul className="space-y-4">
-                    {[
-                      "Always use proper cylinder handling trolleys",
-                      "Store cylinders upright and strap them securely",
-                      "Use protective valve guards or caps at all times",
-                      "Ensure personnel are trained in cylinder handling",
-                      "Handle cylinders as per IS standards approved by BIS"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-white/70 text-sm font-sans leading-relaxed">
-                        <ShieldCheck className="w-5 h-5 text-[#4ADE80] shrink-0 mt-0.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </RevealOnScroll>
-              
-              <RevealOnScroll delay="delay-200">
-                <div className="bg-[#E63630]/10 border border-[#E63630]/30 rounded-2xl p-8">
-                  <h3 className="text-[#E63630] font-bold text-xl mb-6 font-secondary uppercase tracking-widest flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#E63630]"></div> Key Don'ts
-                  </h3>
-                  <ul className="space-y-4">
-                    {[
-                      "Never roll or drop cylinders on the ground",
-                      "Never lift a cylinder by its valve",
-                      "Never use leaking or damaged gas cylinders",
-                      "Never use wrong fittings — always verify specifications"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-white/70 text-sm font-sans leading-relaxed">
-                        <AlertCircle className="w-5 h-5 text-[#E63630] shrink-0 mt-0.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </RevealOnScroll>
-            </div>
           </div>
         </div>
       </section>

@@ -8,15 +8,13 @@ const NARRATION_WORDS = NARRATION_TEXT.split(/\s+/);
 
 const BACKGROUND_SETS = [
   [
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200',
-
+    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200', // Industrial OEM factory & automated machinery
   ],
   [
-    'https://media.istockphoto.com/id/626545182/photo/toronto-skyline-with-purple-light-toronto-ontario-canada.jpg?s=2048x2048&w=is&k=20&c=Sf2cklcBi57MrDwgdj3p7Knd7inRede2qAAvzx3Q2qM=',
-
+    'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200', // Robotic MIG welding & cylinder manufacturing line
   ],
   [
-    'https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?q=80&w=1342&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=1200'  // High-pressure industrial gas handling & plant equipment
   ]
 ];
 

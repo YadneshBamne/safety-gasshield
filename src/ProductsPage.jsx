@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Shield, Package, Truck, Layers, Wrench, PlusCircle, Factory, ChevronRight, Activity, ThermometerSnowflake, Flame, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { 
+  Shield, Package, Truck, Layers, Wrench, PlusCircle, Factory, ChevronRight, 
+  Activity, ThermometerSnowflake, Flame, ArrowRight, CheckCircle2, ShieldCheck, 
+  AlertCircle, Download, FileText, Anchor
+} from 'lucide-react';
 import { RevealOnScroll } from './RevealOnScroll';
 
-export default function ProductsPage() {
+export default function ProductsPage({ setCurrentPage }) {
   const [activeTab, setActiveTab] = useState(0);
 
   const categories = [
@@ -19,245 +23,256 @@ export default function ProductsPage() {
     switch(activeTab) {
       case 0:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Valve Protection Guards (VPGs)</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                The most critical safety accessory for any pressurised gas cylinder. They protect the valve — the most vulnerable component — from impact damage during handling, transportation, and storage. A damaged valve can lead to catastrophic gas release or explosion. Our SE Series guards are manufactured for all major cylinder types and gas categories.
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Primary Protection</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Valve Protection Guards (VPGs)
+              </h2>
+              <p className="text-white/70 font-sans text-base md:text-lg leading-relaxed max-w-4xl">
+                The most critical safety accessory for pressurized cylinders. Our VPGs shield the valve from catastrophic impact damage during handling, transit, and filling operations across all industrial gas categories.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-              {/* 1.1 Parallel Series */}
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 hover:border-[#E63630]/50 transition-colors h-full flex flex-col">
-                <div className="mb-6">
-                  <span className="bg-[#E63630] text-white text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Industrial Oxygen (Black)</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>SE Parallel Series</h3>
-                <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">High Pressure Industrial Gas Cylinders with Spindle Operated Valves.</p>
-                <div className="space-y-4 mt-auto">
-                  {[
-                    { name: "SE LITE", specs: "ID: 80mm | H: 105-112mm | W: 800g", thread: "W80 11 TPI" },
-                    { name: "SE DURABLE", specs: "ID: 80mm | H: 105-112mm | W: 1Kg", thread: "W80 11 TPI" },
-                    { name: "SE MIGHTY", specs: "ID: 80mm | H: 105-112mm | W: 1.05Kg", desc: "Heavy Clamp Set" }
-                  ].map((item, i) => (
-                    <div key={i} className="bg-black/40 p-5 rounded-2xl border border-white/5 hover:border-[#E63630]/30 transition-colors">
-                      <h4 className="text-[#E63630] font-bold mb-1 text-lg">{item.name}</h4>
-                      <p className="text-white/80 text-sm font-mono tracking-wide">{item.specs}</p>
-                      {item.thread && <p className="text-white/50 text-xs mt-2 uppercase tracking-wider">Thread: {item.thread}</p>}
-                      {item.desc && <p className="text-white/50 text-xs mt-2 uppercase tracking-wider">{item.desc}</p>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {[
+                {
+                  title: "SE Parallel Series (Oxygen & Inerts)",
+                  desc: "Engineered for high-pressure industrial cylinders with spindle-operated valves, delivering maximum impact resilience and rigid neck mounting.",
+                  badge: "Industrial Oxygen (Black)"
+                },
+                {
+                  title: "SE Conical Series (CO₂ & Multi-Gas)",
+                  desc: "Tapered guard profile optimized for cylinders with wheel-operated (C-Type, D-Type, O-Type) valves, allowing unrestricted handwheel operation.",
+                  badge: "Industrial CO₂ (Green Grey)"
+                },
+                {
+                  title: "SE–DA Series (Dissolved Acetylene)",
+                  desc: "Heavy-gauge reinforced guard architecture designed specifically for welded and seamless dissolved acetylene cylinders.",
+                  badge: "Industrial Nitrogen (Pewter)"
+                },
+                {
+                  title: "SE–DA Conical Range (Argon & Welded)",
+                  desc: "Robust conical guards tailored for high-volume argon and wheel-operated acetylene vessels requiring rapid manifold access.",
+                  badge: "Industrial Argon (Peacock Blue)"
+                },
+                {
+                  title: "SE Hydrogen & Fire Safety Guards",
+                  desc: "Specially engineered protective collars for high-risk hydrogen cylinder necks and 47L+ industrial fire extinguishing installations.",
+                  badge: "Hydrogen & Fire (Signal Red)"
+                },
+                {
+                  title: "SE Refrigerant & Enclosed Guards",
+                  desc: "Special enclosed designs engineered for refrigerant gas containers, dual-valve cylinder systems, and integrated regulator assemblies.",
+                  badge: "Specialty & HVAC Gases"
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-[#E63630]/50 transition-all duration-300 group flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-[#E63630] group-hover:bg-[#E63630] group-hover:text-white transition-colors shrink-0">
+                        <Shield className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-mono tracking-wider font-bold uppercase text-white/50 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+                        {item.badge}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 1.2 Conical Series */}
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 hover:border-[#E63630]/50 transition-colors h-full flex flex-col">
-                <div className="mb-6">
-                  <span className="bg-gray-600 text-white text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Industrial CO₂ (Green Grey)</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>SE Conical Series</h3>
-                <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">High Pressure Gas Cylinders with Wheel Operated (C/D/O-Type) Valves.</p>
-                <div className="space-y-4 mt-auto">
-                  <div className="bg-black/40 p-6 rounded-2xl border border-white/5 hover:border-[#E63630]/30 transition-colors">
-                    <h4 className="text-white font-bold mb-4 text-lg">SE STALWART Range</h4>
-                    <ul className="text-white/70 text-sm space-y-3 font-sans">
-                      <li className="flex items-start gap-2"><strong className="text-[#E63630]">01:</strong> C-Type Top Wheel Side Outlet</li>
-                      <li className="flex items-start gap-2"><strong className="text-[#E63630]">02:</strong> C-Type Side Wheel Top Outlet</li>
-                      <li className="flex items-start gap-2"><strong className="text-[#E63630]">03:</strong> D-Type Top Wheel Side Outlet</li>
-                      <li className="flex items-start gap-2"><strong className="text-[#E63630]">04:</strong> O-Type Top Wheel Side Outlet</li>
-                    </ul>
-                    <div className="mt-6 pt-4 border-t border-white/10">
-                      <p className="text-white/50 text-xs uppercase tracking-wider font-mono">ID 80mm | H 110-140mm | W 1.1-1.4Kg | W80 11 TPI</p>
-                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2 font-secondary group-hover:text-[#E63630] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/60 text-sm md:text-base leading-relaxed font-sans">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
-              </div>
-
-              {/* 1.3 DA Parallel Series */}
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 hover:border-[#E63630]/50 transition-colors h-full flex flex-col">
-                <div className="mb-6">
-                  <span className="bg-gray-400 text-black text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Industrial Nitrogen (Pewter)</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>SE–DA Parallel Series</h3>
-                <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">Dissolved Acetylene Welded & Seamless Gas Cylinders.</p>
-                <div className="space-y-4 mt-auto">
-                  <div className="bg-black/40 p-6 rounded-2xl border border-white/5 hover:border-[#E63630]/30 transition-colors">
-                    <p className="text-[#E63630] text-sm font-mono tracking-wider mb-4 pb-4 border-b border-white/10">ID: 89mm | H: 105-112mm | W80 11 TPI</p>
-                    <ul className="text-white/80 text-sm space-y-4 font-sans">
-                      <li className="flex items-center justify-between"><strong className="text-white font-bold">SE DA LITE</strong> <span className="text-white/50">1 Kg</span></li>
-                      <li className="flex items-center justify-between"><strong className="text-white font-bold">SE DA STRONG</strong> <span className="text-white/50">1.3 Kg</span></li>
-                      <li className="flex flex-col mt-2 pt-2"><strong className="text-[#E63630] font-bold mb-1">SE 1N10W</strong> <span className="text-white/60 text-xs">Special variant for Nitrogen/DA cylinders</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* 1.4 DA Conical Series */}
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 hover:border-[#E63630]/50 transition-colors h-full flex flex-col">
-                <div className="mb-6">
-                  <span className="bg-blue-600 text-white text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Industrial Argon (Peacock Blue)</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>SE–DA Conical Series</h3>
-                <p className="text-white/60 mb-8 text-sm md:text-base leading-relaxed">For Dissolved Acetylene Welded and Seamless Gas Cylinders with Wheel Operated Valves.</p>
-                <div className="space-y-4 mt-auto">
-                  <div className="bg-black/40 p-6 rounded-2xl border border-white/5 hover:border-[#E63630]/30 transition-colors">
-                    <h4 className="text-white font-bold mb-4 text-lg">SE DA GRAND Range</h4>
-                    <ul className="text-white/80 text-sm space-y-4 font-sans">
-                      <li className="flex items-center justify-between"><strong className="text-[#E63630] font-bold">01</strong> <span className="text-white/50 text-xs font-mono tracking-wider">ID 89mm | W: 1-1.4Kg</span></li>
-                      <li className="flex items-center justify-between"><strong className="text-[#E63630] font-bold">02</strong> <span className="text-white/50 text-xs font-mono tracking-wider">ID 89-125mm | W: 1-1.4Kg</span></li>
-                      <li className="flex items-center justify-between"><strong className="text-[#E63630] font-bold">03</strong> <span className="text-white/50 text-xs font-mono tracking-wider">ID 89-125mm | W: 1.5+ Kg</span></li>
-                    </ul>
-                    <div className="mt-6 pt-4 border-t border-white/10">
-                      <p className="text-white/50 text-xs uppercase tracking-wider font-mono">H: 110-140mm | W80 11 TPI</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 1.5 Special */}
-              <div className="md:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 hover:border-[#E63630]/50 transition-colors">
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="bg-red-600 text-white text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Hydrogen (Signal Red)</span>
-                  <span className="bg-white/20 text-white text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Special Applications</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-6" style={{ fontFamily: "'Gambarino', serif" }}>SE–Hydrogen, Fire Safety & Refrigerant</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                   {[
-                     { name: "SE H2 01", desc: "Hydrogen with Neck Ring", spec: "ID: 80mm | W80 11 TPI" },
-                     { name: "SE H2 02", desc: "Hydrogen without Neck Ring", spec: "ID: Free Size | No Thread" },
-                     { name: "SE COOL", desc: "Refrigerant Gases", spec: "ID: 80mm | No Thread" },
-                     { name: "SE FIRE", desc: "47L+ Fire Extinguishers", spec: "ID: 80mm | W80 11 TPI" },
-                     { name: "SE MASSE", desc: "Enclosed VPG with Valve", spec: "Custom specifications" }
-                   ].map((item, idx) => (
-                     <div key={idx} className="bg-black/40 p-6 rounded-2xl border border-white/5 hover:border-[#E63630]/30 transition-colors flex flex-col h-full">
-                       <h4 className="text-[#E63630] font-bold text-xl mb-2">{item.name}</h4>
-                       <p className="text-white/80 text-sm mb-4 leading-relaxed">{item.desc}</p>
-                       <p className="text-white/40 text-xs font-mono tracking-wider mt-auto">{item.spec}</p>
-                     </div>
-                   ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         );
       case 1:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Dome Type Caps</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                The Dome Type Cap provides complete, enclosed protection for gas cylinder valves. Unlike open-frame guards, the dome cap covers the entire valve head, offering maximum protection during transportation, filling, and storage.
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Complete Enclosure</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Dome Type Caps
+              </h2>
+              <p className="text-white/70 font-sans text-base md:text-lg leading-relaxed max-w-4xl">
+                Unlike open-frame guards, the SE Dome Cap covers the entire valve head to offer complete 360-degree shielding against moisture, yard debris, and severe transit shocks.
               </p>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-10 md:p-14 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center shadow-2xl">
-              <div className="w-full lg:w-1/2">
-                <div className="w-16 h-16 bg-[#E63630]/20 rounded-2xl flex items-center justify-center mb-8">
-                  <Package className="w-8 h-8 text-[#E63630]" />
-                </div>
-                <h3 className="text-4xl font-bold text-white mb-8" style={{ fontFamily: "'Gambarino', serif" }}>SE DOME</h3>
-                <ul className="space-y-6">
-                  <li className="flex gap-4 items-start"><CheckCircle2 className="w-6 h-6 text-[#E63630] flex-shrink-0 mt-0.5" /> <div className="text-white/80 text-lg"><strong className="text-white">ID Range:</strong> 80 mm – 125 mm</div></li>
-                  <li className="flex gap-4 items-start"><CheckCircle2 className="w-6 h-6 text-[#E63630] flex-shrink-0 mt-0.5" /> <div className="text-white/80 text-lg"><strong className="text-white">Thread:</strong> W80 11 TPI</div></li>
-                  <li className="flex gap-4 items-start"><CheckCircle2 className="w-6 h-6 text-[#E63630] flex-shrink-0 mt-0.5" /> <div className="text-white/80 text-lg"><strong className="text-white">Application:</strong> Suitable for all types of gas cylinders</div></li>
-                  <li className="flex gap-4 items-start"><CheckCircle2 className="w-6 h-6 text-[#E63630] flex-shrink-0 mt-0.5" /> <div className="text-white/80 text-lg"><strong className="text-white">Colour Options:</strong> Red, White, Black, custom compliance colours</div></li>
-                </ul>
-              </div>
-              <div className="w-full lg:w-1/2">
-                <div className="bg-[#E63630]/10 border border-[#E63630]/30 p-10 rounded-3xl shadow-inner relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#E63630]/20 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-                  <h4 className="text-[#E63630] font-bold text-xl uppercase tracking-widest mb-4 flex items-center gap-3">
-                    <Activity className="w-6 h-6"/> Safety Note
-                  </h4>
-                  <p className="text-white/80 leading-relaxed text-lg">
-                    The valve guard or dome cap must not be removed from the cylinder during filling, transportation, operation, or storage. Always ensure absolute safety before any removal.
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-[#E63630] mb-4">
+                    <Package className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Gambarino', serif" }}>
+                    SE Dome Cap Enclosure
+                  </h3>
+                  <p className="text-white/60 text-base leading-relaxed mb-6 font-sans">
+                    Precision threaded dome caps engineered for all standard high-pressure industrial, medical, and specialty gas cylinders.
                   </p>
                 </div>
+                <div className="space-y-3 pt-4 border-t border-white/10 text-sm text-white/70">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+                    <span>Universally compatible across all industrial gas cylinder sizes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+                    <span>Standardized thread profile with reinforced drop-proof steel</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-[#E63630] mb-4">
+                    <Anchor className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Gambarino', serif" }}>
+                    Industrial Color Coding
+                  </h3>
+                  <p className="text-white/60 text-base leading-relaxed mb-6 font-sans">
+                    Available in durable powder-coated color finishes in strict alignment with IS/BIS and international gas identification standards.
+                  </p>
+                </div>
+                <div className="space-y-3 pt-4 border-t border-white/10 text-sm text-white/70">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+                    <span>Oxygen (Black), Nitrogen (Pewter), CO₂ (Green Grey)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" />
+                    <span>Argon (Peacock Blue), Hydrogen (Signal Red), Custom</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#E63630]/10 border border-[#E63630]/30 rounded-2xl p-6 md:p-8 flex items-start gap-5">
+              <div className="w-10 h-10 rounded-xl bg-[#E63630]/20 flex items-center justify-center text-[#E63630] shrink-0 mt-1">
+                <AlertCircle className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="text-[#E63630] font-bold text-base uppercase tracking-widest mb-1">
+                  Safety Precaution
+                </h4>
+                <p className="text-white/80 leading-relaxed text-sm md:text-base font-sans">
+                  The valve guard or dome cap must never be removed from the cylinder during filling, transportation, or long-term storage. Always verify safety procedures before detaching.
+                </p>
               </div>
             </div>
           </div>
         );
       case 2:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
-             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Cylinder Handling Trolleys</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                Safe cylinder handling requires the right equipment. Rolling or dragging cylinders, or lifting them by the valve, are among the most dangerous practices in the gas industry. Our cylinder trolleys are designed to eliminate these risks.
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
+            <div>
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Plant Logistics</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Cylinder Handling Trolleys
+              </h2>
+              <p className="text-white/70 font-sans text-base md:text-lg leading-relaxed max-w-4xl">
+                Eliminate dangerous dragging, rolling, or valve-lifting. Our ergonomic trolleys ensure stable, zero-tip transit across workshops, plants, and medical gas wards.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-               <div className="bg-white/5 border border-white/10 rounded-3xl p-10 md:p-12 hover:border-[#E63630]/50 transition-all duration-300 group">
-                 <div className="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:bg-[#E63630]/20 transition-colors">
-                   <Truck className="w-10 h-10 text-[#E63630]" />
-                 </div>
-                 <h3 className="text-3xl font-bold text-white mb-6" style={{ fontFamily: "'Gambarino', serif" }}>Single & Double Trolleys</h3>
-                 <p className="text-white/60 mb-8 text-lg leading-relaxed">Stable, ergonomic, and reliable transport solutions for factories, hospitals, laboratories, and filling stations.</p>
-                 <div className="bg-black/30 p-6 rounded-2xl border border-white/5">
-                   <ul className="text-white/80 space-y-4 font-sans text-base">
-                     <li className="flex justify-between border-b border-white/5 pb-2"><strong className="text-white font-medium">Finish</strong> <span className="text-white/60">Powder Coated</span></li>
-                     <li className="flex justify-between border-b border-white/5 pb-2"><strong className="text-white font-medium">Types</strong> <span className="text-white/60">Single, Double, Lay-down</span></li>
-                     <li className="flex justify-between"><strong className="text-white font-medium">Compliance</strong> <span className="text-[#E63630] text-right max-w-[200px]">Keeps cylinders upright & restrained</span></li>
-                   </ul>
-                 </div>
-               </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                {
+                  title: "Single Cylinder Trolleys",
+                  desc: "Ergonomic powder-coated trolleys with heavy-duty safety chains, designed for swift and stable single-cylinder maneuvering."
+                },
+                {
+                  title: "Double Cylinder Trolleys",
+                  desc: "Dual-cylinder carrier engineered for balanced transport of gas combinations like Oxy-Acetylene with puncture-resistant industrial wheels."
+                },
+                {
+                  title: "Lay-Down & Utility Trolleys",
+                  desc: "Engineered for low-strain horizontal cylinder placement and seamless transition into vertical storage racks."
+                }
+              ].map((trolley, idx) => (
+                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-[#E63630]/50 transition-all duration-300 group">
+                  <div className="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-[#E63630] group-hover:bg-[#E63630] group-hover:text-white transition-colors mb-5">
+                    <Truck className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 font-secondary">{trolley.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed font-sans">{trolley.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         );
       case 3:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Pallets & Skids</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                For bulk storage and multi-cylinder transport, our custom-manufactured cylinder pallets and skids provide the structural integrity and safety required for high-pressure gas cylinders.
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Bulk Transport & Storage</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Pallets & Skids
+              </h2>
+              <p className="text-white/70 font-sans text-base md:text-lg leading-relaxed max-w-4xl">
+                Engineered for bulk multi-cylinder movement and safe storage. Certified heavy-duty structural designs tailored to forklift, crane, and manifold operations.
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-               <div className="bg-white/5 border border-white/10 rounded-3xl p-10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-                 <div className="flex justify-between items-start mb-8">
-                   <h3 className="text-3xl font-bold text-white" style={{ fontFamily: "'Gambarino', serif" }}>Cylinder Skids</h3>
-                   <Layers className="w-10 h-10 text-[#E63630] opacity-50 group-hover:opacity-100 transition-opacity" />
-                 </div>
-                 <p className="text-white/70 leading-relaxed text-lg mb-6">Manufactured as per customer requirement. We are specialist manufacturers of Hydrogen Cylinder Skids for high-pressure hydrogen storage and transport.</p>
-                 <span className="inline-block text-xs uppercase tracking-widest text-[#E63630] font-bold border border-[#E63630]/30 px-4 py-2 rounded-full">Custom Configuration</span>
-               </div>
-               
-               <div className="bg-white/5 border border-white/10 rounded-3xl p-10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group">
-                 <div className="flex justify-between items-start mb-8">
-                   <h3 className="text-3xl font-bold text-white" style={{ fontFamily: "'Gambarino', serif" }}>Cylinder Pallets</h3>
-                   <Layers className="w-10 h-10 text-[#E63630] opacity-50 group-hover:opacity-100 transition-opacity" />
-                 </div>
-                 <p className="text-white/70 leading-relaxed text-lg mb-6">Manufactured as per customer requirement. Suitable for grouping multiple cylinders for safe storage and forklift handling.</p>
-                 <span className="inline-block text-xs uppercase tracking-widest text-[#E63630] font-bold border border-[#E63630]/30 px-4 py-2 rounded-full">Bulk Storage</span>
-               </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                {
+                  title: "Hydrogen Cylinder Skids",
+                  desc: "Specialist certified skids engineered for high-pressure hydrogen cascade storage, secure manifold connections, and offshore transit."
+                },
+                {
+                  title: "Multi-Cylinder Industrial Pallets",
+                  desc: "Heavy-duty steel pallets built for grouping multiple cylinders, equipped with integrated safety gates and forklift channels."
+                },
+                {
+                  title: "Custom Skid Systems",
+                  desc: "Custom-manufactured skid frames fabricated to client dimensional and load-bearing requirements with dedicated crane lifting lugs."
+                }
+              ].map((skid, idx) => (
+                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-[#E63630]/50 transition-all duration-300 group">
+                  <div className="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-[#E63630] group-hover:bg-[#E63630] group-hover:text-white transition-colors mb-5">
+                    <Layers className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 font-secondary">{skid.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed font-sans">{skid.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         );
       case 4:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Accessories</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                We supply a comprehensive range of critical cylinder accessories for the gas industry:
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Precision Components</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Accessories
+              </h2>
+              <p className="text-white/70 font-sans text-base md:text-lg leading-relaxed max-w-4xl">
+                A comprehensive portfolio of precision-machined replacement hardware, keys, and certification accessories for industrial gas systems.
               </p>
             </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {[
-                { title: "Cylinder Valve Spindle", desc: "Precision-machined replacement spindles for gas cylinder valves." },
-                { title: "Standard Forged Spindle Key", desc: "Heavy-duty forged keys (O₂ & CO₂) for operating cylinder valves safely." },
-                { title: "Cylinder Forged Neck Ring", desc: "Precision-forged neck rings for cylinder valve seating and protection." },
-                { title: "Cylinder Testing Ring", desc: "Used during hydrostatic testing — ensures compliance with periodic testing requirements." },
-                { title: "Cylinder Valve", desc: "Wide range of cylinder valves for industrial, medical, and specialty gas applications." }
+                { title: "Cylinder Valve Spindle", desc: "Precision CNC-machined replacement spindles ensuring leak-tight valve operation." },
+                { title: "Standard Forged Spindle Key", desc: "Heavy-duty forged operating keys (O₂ & CO₂) for secure, slip-free valve control." },
+                { title: "Cylinder Forged Neck Ring", desc: "High-strength forged neck rings for reliable guard and cap seating." },
+                { title: "Cylinder Testing Ring", desc: "Specialized rings utilized during hydrostatic testing to ensure BIS compliance." },
+                { title: "Cylinder Valves", desc: "Full spectrum of certified valves for industrial, medical, and ultra-high-purity gases." }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white/5 border border-white/10 rounded-3xl p-8 flex flex-col sm:flex-row gap-6 hover:border-[#E63630]/50 transition-colors group">
-                  <div className="w-14 h-14 bg-black/40 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#E63630]/20 transition-colors">
-                    <Wrench className="w-7 h-7 text-[#E63630]" />
+                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-7 flex gap-5 hover:border-[#E63630]/50 transition-colors group">
+                  <div className="w-12 h-12 bg-black/40 rounded-xl flex items-center justify-center flex-shrink-0 text-[#E63630] group-hover:bg-[#E63630] group-hover:text-white transition-colors">
+                    <Wrench className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-white mb-3">{item.title}</h4>
-                    <p className="text-white/60 text-base leading-relaxed">{item.desc}</p>
+                    <h4 className="text-lg font-bold text-white mb-2 font-secondary">{item.title}</h4>
+                    <p className="text-white/60 text-sm leading-relaxed font-sans">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -266,26 +281,33 @@ export default function ProductsPage() {
         );
       case 5:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Value Addition Products</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                Beyond our core cylinder handling range, we offer an extended portfolio of premium gas industry products:
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Advanced Engineering</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Value Addition Products
+              </h2>
+              <p className="text-white/70 font-sans text-lg leading-relaxed max-w-4xl">
+                High-performance auxiliary components engineered for cryogenic pipelines, pressure management, and specialized gas distribution.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: "Thermal Pressure Relief Valve", desc: "Rated at 15 Bar — provides automatic pressure relief to prevent over-pressurisation." },
-                { title: "Cryogenic Hoses & Connectors", desc: "Flexible hoses engineered for cryogenic service (Liquid N₂, O₂, LNG)." },
-                { title: "Cryogenic Globe Valve", desc: "Precision valves designed for cryogenic temperature service." },
-                { title: "Cryo Regulator Cum Economizer", desc: "Combined system improves efficiency and reduces cryogenic gas wastage." },
-                { title: "Liquid Dura Cylinder", desc: "Heavy-duty liquid gas storage cylinders for cryogenic applications." },
-                { title: "Cylinder Connection Pig Tails", desc: "Flexible pigtail connectors for safe, leak-free cylinder-to-manifold connections." },
-                { title: "Empty New Cylinders", desc: "Available on request — suitable for industrial, medical, and specialty gas." }
+                { title: "Thermal Pressure Relief Valve", desc: "Rated at 15 Bar — automatic relief prevents over-pressurization in gas lines." },
+                { title: "Cryogenic Hoses & Connectors", desc: "Flexible hoses engineered for liquid nitrogen, liquid oxygen, and LNG transfer." },
+                { title: "Cryogenic Globe Valve", desc: "Precision engineered valves designed for extreme cryogenic temperature service." },
+                { title: "Cryo Regulator Cum Economizer", desc: "Dual system designed to improve distribution efficiency and reduce gas boil-off." },
+                { title: "Liquid Dura Cylinders", desc: "Heavy-duty cryogenic liquid cylinders for high-volume storage and dispensing." },
+                { title: "Cylinder Connection Pig Tails", desc: "Flexible high-pressure pigtail connectors for safe, leak-free manifold coupling." },
+                { title: "Empty New Cylinders", desc: "Supplied on request for industrial, medical, and specialty gas filling requirements." }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-[#E63630]/10 hover:border-[#E63630]/30 transition-all duration-300">
-                  <h4 className="text-[#E63630] font-bold text-xl mb-4">{item.title}</h4>
-                  <p className="text-white/70 text-base leading-relaxed">{item.desc}</p>
+                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#E63630]/50 transition-colors group">
+                  <div className="w-10 h-10 rounded-xl bg-black/40 flex items-center justify-center text-[#E63630] group-hover:bg-[#E63630] group-hover:text-white transition-colors mb-4">
+                    <PlusCircle className="w-5 h-5" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2 font-secondary">{item.title}</h4>
+                  <p className="text-white/60 text-sm leading-relaxed font-sans">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -293,37 +315,48 @@ export default function ProductsPage() {
         );
       case 6:
         return (
-          <div className="space-y-12 transition-opacity duration-500 animate-in fade-in">
+          <div className="space-y-10 transition-opacity duration-500 animate-in fade-in">
             <div>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>Comprehensive Gas Solutions</h2>
-              <p className="text-white/70 font-sans text-lg md:text-xl leading-relaxed mb-8 max-w-4xl">
-                In addition to equipment manufacturing, Standard Gasshield offers the supply of a complete range of gases for diverse industrial and commercial applications.
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Total Solutions</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>
+                Comprehensive Gas Solutions
+              </h2>
+              <p className="text-white/70 font-sans text-lg leading-relaxed max-w-4xl">
+                In addition to manufacturing equipment, Standard Gasshield supplies complete gas solutions for industrial, commercial, and laboratory use.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-10 md:p-12 hover:border-gray-400/50 transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-gray-500/10 blur-3xl rounded-full"></div>
-                <Factory className="w-12 h-12 text-gray-400 mb-8" />
-                <h3 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>Industrial Gases</h3>
-                <p className="text-white/60 text-lg leading-relaxed">Oxygen (O₂), Nitrogen (N₂), Argon (Ar), Carbon Dioxide (CO₂), Hydrogen (H₂), Acetylene (C₂H₂)</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-white/30 transition-colors">
+                <Factory className="w-10 h-10 text-[#E63630] mb-5" />
+                <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Gambarino', serif" }}>Industrial Gases</h3>
+                <p className="text-white/60 text-base leading-relaxed font-sans">
+                  Reliable supply of Oxygen (O₂), Nitrogen (N₂), Argon (Ar), Carbon Dioxide (CO₂), Hydrogen (H₂), and Dissolved Acetylene (C₂H₂).
+                </p>
               </div>
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-10 md:p-12 hover:border-blue-500/50 transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 blur-3xl rounded-full"></div>
-                <ThermometerSnowflake className="w-12 h-12 text-blue-400 mb-8" />
-                <h3 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>Refrigerant Gases</h3>
-                <p className="text-white/60 text-lg leading-relaxed">R134a, R404A, R410A, R22, R32, Ammonia (NH₃) & Aerosol Cans (R134a, R600, R290, R32, R410, R438 & Hydrocarbons)</p>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-blue-500/50 transition-colors">
+                <ThermometerSnowflake className="w-10 h-10 text-blue-400 mb-5" />
+                <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Gambarino', serif" }}>Refrigerant Gases</h3>
+                <p className="text-white/60 text-base leading-relaxed font-sans">
+                  Complete line of R134a, R404A, R410A, R22, R32, Ammonia (NH₃), and portable aerosol refill canisters.
+                </p>
               </div>
-              <div className="bg-white/5 border border-white/10 rounded-3xl p-10 md:p-12 hover:border-purple-500/50 transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-purple-500/10 blur-3xl rounded-full"></div>
-                <Activity className="w-12 h-12 text-purple-400 mb-8" />
-                <h3 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>Specialty & Mixed Gases</h3>
-                <p className="text-white/60 text-lg leading-relaxed">Helium (He), Calibration Gas Mixtures, Zero Air, Specialty Gas Blends, Medical Gases</p>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-purple-500/50 transition-colors">
+                <Activity className="w-10 h-10 text-purple-400 mb-5" />
+                <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Gambarino', serif" }}>Specialty & Mixed Gases</h3>
+                <p className="text-white/60 text-base leading-relaxed font-sans">
+                  Helium (He), certified calibration gas standards, zero air, custom laboratory mixtures, and medical-grade gases.
+                </p>
               </div>
-              <div className="bg-[#E63630]/10 border border-[#E63630]/30 rounded-3xl p-10 md:p-12 hover:bg-[#E63630]/20 transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-[#E63630]/20 blur-3xl rounded-full"></div>
-                <Flame className="w-12 h-12 text-[#E63630] mb-8" />
-                <h3 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Gambarino', serif" }}>Fire Safety & Services</h3>
-                <p className="text-white/80 text-lg leading-relaxed">All types of fire cylinders and extinguishers. Professional Cylinder Testing Services to maintain integrity and longevity.</p>
+
+              <div className="bg-[#E63630]/10 border border-[#E63630]/30 rounded-2xl p-7 hover:bg-[#E63630]/20 transition-colors">
+                <Flame className="w-10 h-10 text-[#E63630] mb-5" />
+                <h3 className="text-2xl font-bold text-white mb-3" style={{ fontFamily: "'Gambarino', serif" }}>Fire Safety & Services</h3>
+                <p className="text-white/80 text-base leading-relaxed font-sans">
+                  Complete fire cylinder supply, periodic hydrostatic testing services, and certified cylinder maintenance.
+                </p>
               </div>
             </div>
           </div>
@@ -354,14 +387,14 @@ export default function ProductsPage() {
       </section>
 
       {/* 2. Interactive Products Dashboard */}
-      <section className="py-24 md:py-32 relative z-10">
+      <section className="py-20 md:py-28 relative z-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-20">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
             
             {/* Sidebar Categories */}
             <div className="w-full lg:w-1/4">
               <div className="lg:sticky lg:top-32 space-y-3">
-                <span className="text-[#E63630] text-sm font-bold tracking-[0.3em] uppercase mb-8 block px-4">
+                <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-6 block px-4">
                   Categories
                 </span>
                 {categories.map((cat, idx) => (
@@ -370,13 +403,13 @@ export default function ProductsPage() {
                     onClick={() => setActiveTab(idx)}
                     className={`w-full text-left p-5 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
                       activeTab === idx 
-                        ? 'bg-[#E63630] text-white shadow-[0_10px_30px_rgba(230,54,48,0.2)] scale-105' 
+                        ? 'bg-[#E63630] text-white shadow-[0_10px_30px_rgba(230,54,48,0.25)] scale-[1.02]' 
                         : 'bg-transparent text-white/60 hover:bg-white/5 hover:text-white'
                     }`}
                   >
                     <div className="flex items-center gap-4">
                       <cat.icon className={`w-5 h-5 ${activeTab === idx ? 'text-white' : 'text-[#E63630]'}`} />
-                      <span className="font-bold text-sm md:text-lg font-secondary">{cat.name}</span>
+                      <span className="font-bold text-sm md:text-base font-secondary">{cat.name}</span>
                     </div>
                     {activeTab === idx && <ChevronRight className="w-5 h-5 opacity-100" />}
                   </button>
@@ -386,11 +419,130 @@ export default function ProductsPage() {
 
             {/* Dynamic Content Area */}
             <div className="w-full lg:w-3/4">
-              <div className="min-h-[600px] bg-black/20 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 border border-white/5">
+              <div className="min-h-[550px] bg-black/30 rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 shadow-2xl">
                 {renderCategoryContent()}
               </div>
             </div>
             
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Gas Safety Awareness Section (Moved from HomePage as per Slide 4) */}
+      <section className="py-24 md:py-32 bg-[#060608] relative z-10 border-t border-white/10">
+        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+            <div className="w-full lg:w-1/2">
+              <RevealOnScroll>
+                <span className="text-[#E63630] text-sm font-semibold tracking-[0.3em] uppercase font-secondary mb-4 block">
+                  Safety Philosophy
+                </span>
+                <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-white mb-6 tracking-wide leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>
+                  Treat Every Cylinder With Respect — It Is A Sleeping Giant.
+                </h2>
+                <p className="text-white/70 font-sans text-lg leading-relaxed mb-8">
+                  At Standard Gasshield, safety is not just our business — it is our belief. We are committed to educating the industry on safe gas cylinder handling practices that prevent accidents, save lives, and protect property.
+                </p>
+                <div className="flex items-center gap-4 text-white/50 text-sm font-mono uppercase tracking-wider">
+                  <span className="w-3 h-3 rounded-full bg-[#E63630] animate-pulse"></span>
+                  Adheres to BIS & International Handling Directives
+                </div>
+              </RevealOnScroll>
+            </div>
+            
+            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <RevealOnScroll delay="delay-100">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full">
+                  <h3 className="text-[#4ADE80] font-bold text-xl mb-6 font-secondary uppercase tracking-widest flex items-center gap-3">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#4ADE80]"></div> Key Do's
+                  </h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Always use proper cylinder handling trolleys",
+                      "Store cylinders upright and strap them securely",
+                      "Use protective valve guards or caps at all times",
+                      "Ensure personnel are trained in cylinder handling",
+                      "Handle cylinders as per IS standards approved by BIS"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-white/70 text-sm font-sans leading-relaxed">
+                        <ShieldCheck className="w-5 h-5 text-[#4ADE80] shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </RevealOnScroll>
+              
+              <RevealOnScroll delay="delay-200">
+                <div className="bg-[#E63630]/10 border border-[#E63630]/30 rounded-2xl p-8 h-full">
+                  <h3 className="text-[#E63630] font-bold text-xl mb-6 font-secondary uppercase tracking-widest flex items-center gap-3">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#E63630]"></div> Key Don'ts
+                  </h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Never roll or drop cylinders on the ground",
+                      "Never lift a cylinder by its valve assembly",
+                      "Never use leaking or damaged gas cylinders",
+                      "Never use wrong fittings — always verify specifications"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-white/70 text-sm font-sans leading-relaxed">
+                        <AlertCircle className="w-5 h-5 text-[#E63630] shrink-0 mt-0.5" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </RevealOnScroll>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Request a Brochure Section (Slide 7) */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden text-[#060608]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="bg-[#060608] rounded-[2.5rem] p-10 md:p-16 lg:p-20 text-white relative overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-12 border border-white/10">
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#E63630]/20 blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+
+            <div className="w-full lg:w-7/12 relative z-10">
+              <span className="text-[#E63630] text-xs font-bold tracking-[0.3em] uppercase mb-4 block">
+                Official Catalog & Specs
+              </span>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Gambarino', serif" }}>
+                Request Our Complete <br />
+                <span className="text-[#E63630] italic">Product Catalogue</span>
+              </h2>
+              <p className="text-white/70 text-base md:text-xl font-sans leading-relaxed mb-8 max-w-xl font-light">
+                Get instant access to complete dimensional drawings, BIS compliance certifications, material grades, and quotation guidance tailored to your operational scale.
+              </p>
+              <div className="flex flex-wrap items-center gap-6 text-sm text-white/60 font-mono">
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" /> Instant PDF Download
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#4ADE80]" /> Full Product Portfolio
+                </span>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-5/12 flex flex-col items-center lg:items-end relative z-10">
+              <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-sm w-full max-w-md text-center flex flex-col items-center">
+                <FileText className="w-16 h-16 text-[#E63630] mb-6" />
+                <h4 className="text-xl font-bold text-white mb-2 font-secondary">Ready to explore?</h4>
+                <p className="text-white/60 text-sm mb-8">
+                  Filling the form will automatically lead to the download of the catalogue.
+                </p>
+                <button
+                  onClick={() => setCurrentPage?.('brochure')}
+                  className="w-full bg-[#E63630] hover:bg-white hover:text-black text-white py-4 px-8 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 shadow-[0_10px_30px_rgba(230,54,48,0.35)] flex items-center justify-center gap-3 group"
+                >
+                  <span>Get Brochure</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

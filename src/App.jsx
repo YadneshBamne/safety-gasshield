@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Menu, X, Shield, MapPin, Phone, Mail, ChevronRight
+  Menu, X, Shield, MapPin, Phone, Mail, ChevronRight, Download, Lock
 } from 'lucide-react';
 
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import ProductsPage from './ProductsPage';
 import ContactPage from './ContactPage';
-import LegacyPage from './LegacyPage';
+import PortalPage from './PortalPage';
 import { StorytellingIntro } from './StorytellingIntro';
 
 const WaveformIcon = ({ isPlaying }) => (
@@ -69,10 +69,10 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  // Center links according to Slide 9
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Us' },
-    { id: 'our legacy', label: 'Our Legacy' },
     { id: 'products', label: 'Products' },
   ];
 
@@ -88,11 +88,11 @@ export default function App() {
         className={`fixed rounded-b-[2.5rem] top-0 left-0 right-0 z-100 transition-all duration-300 ease-in-out ${
           navVisible ? 'translate-y-0 ' : '-translate-y-full'
         } ${
-          currentPage !== 'home' ? 'bg-[#f4f4f5] py-5  text-black ' : isScrolled ? 'bg-black/20 rounded-b-3xl backdrop-blur-sm py-5 text-white' : 'bg-transparent py-7 text-white'
+          currentPage !== 'home' ? 'bg-[#f4f4f5] py-5 text-black ' : isScrolled ? 'bg-black/40 rounded-b-3xl backdrop-blur-md py-5 text-white' : 'bg-transparent py-7 text-white'
         }`}
       >
         <div className="w-full px-6 lg:px-12 flex items-center justify-between">
-          {/* Logo */}
+          {/* Left: Logo and Name (Slide 9) */}
           <button
             type="button"
             onClick={() => handleNav('home')}
@@ -105,7 +105,7 @@ export default function App() {
             </span>
           </button>
 
-          {/* Center Links */}
+          {/* Centre: Home, About Us, Products (Slide 9) */}
           <div className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <button
@@ -123,8 +123,8 @@ export default function App() {
             ))}
           </div>
 
-          {/* Right Action */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Right: Get Brochure, Portal (Slide 9 - Removed Contact Us & Number) */}
+          <div className="hidden md:flex items-center gap-6">
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event('toggle-audio'))}
@@ -138,18 +138,28 @@ export default function App() {
 
             <button
               type="button"
-              onClick={() => handleNav('contact')}
+              onClick={() => handleNav('brochure')}
               className={`text-xs tracking-[0.15em] uppercase font-secondary font-semibold transition-colors ${
-                currentPage !== 'home' ? 'text-gray-900 hover:text-[#E63630]' : 'text-gray-200 hover:text-white'
+                currentPage === 'brochure' || currentPage === 'contact'
+                  ? 'text-[#E63630]'
+                  : currentPage !== 'home' ? 'text-gray-900 hover:text-[#E63630]' : 'text-gray-200 hover:text-white'
               }`}
             >
-              Contact Us
+              Get Brochure
             </button>
-            <a href="tel:+919811440081" className={`text-sm tracking-widest font-secondary font-semibold transition-colors ${
-              currentPage !== 'home' ? 'text-gray-900 hover:text-[#E63630]' : 'text-white hover:text-gray-200'
-            }`}>
-              +91-9811440081
-            </a>
+
+            <button
+              type="button"
+              onClick={() => handleNav('portal')}
+              className={`px-5 py-2.5 rounded-full text-xs tracking-[0.15em] uppercase font-secondary font-bold transition-all shadow-md flex items-center gap-2 ${
+                currentPage === 'portal'
+                  ? 'bg-white text-black'
+                  : 'bg-[#E63630] hover:bg-white hover:text-black text-white shadow-[#E63630]/20'
+              }`}
+            >
+              <Lock className="w-3 h-3" />
+              <span>Portal</span>
+            </button>
           </div>
 
           <div className="md:hidden flex items-center gap-4">
@@ -181,15 +191,15 @@ export default function App() {
 
       {/* Mobile Side Drawer Overlay */}
       <div 
-        className={`md:hidden fixed  inset-0 bg-black/60 backdrop-blur-sm z-[110] transition-opacity duration-500 ease-in-out ${
+        className={`md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] transition-opacity duration-500 ease-in-out ${
           mobileMenuOpen ? 'opacity-100 pointer-events-auto ' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setMobileMenuOpen(false)}
       />
 
-      {/* Mobile Side Drawer */}
+      {/* Mobile Side Drawer (Slide 9 aligned) */}
       <div 
-        className={`md:hidden  rounded-l-[2.6rem] fixed top-0 right-0 h-full w-[75vw] max-w-sm bg-zinc-950 z-[120] shadow-2xl flex flex-col px-8 pt-24 transform transition-transform duration-500 ease-in-out ${
+        className={`md:hidden rounded-l-[2.6rem] fixed top-0 right-0 h-full w-[75vw] max-w-sm bg-zinc-950 z-[120] shadow-2xl flex flex-col px-8 pt-24 transform transition-transform duration-500 ease-in-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -202,7 +212,7 @@ export default function App() {
           <X className="h-8 w-8" />
         </button>
 
-        <div className="flex flex-col gap-8 mt-4">
+        <div className="flex flex-col gap-6 mt-4">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -218,18 +228,27 @@ export default function App() {
             </button>
           ))}
           
-          <div className="w-full h-px bg-white/10 my-4" />
-
-          <a href="tel:+919811440081" className="text-xl tracking-widest font-secondary font-bold text-white hover:text-[#E63630] transition-all duration-300">
-            +91-9811440081
-          </a>
+          <div className="w-full h-px bg-white/10 my-2" />
 
           <button
             type="button"
-            onClick={() => handleNav('contact')}
-            className="mt-4 bg-[#E63630] text-white py-4 px-6 rounded-full text-sm tracking-[0.15em] uppercase font-bold transition-colors shadow-lg shadow-[#E63630]/20 flex items-center justify-between"
+            onClick={() => handleNav('brochure')}
+            className={`text-left text-xl tracking-[0.1em] uppercase font-secondary font-bold transition-all duration-300 ${
+              currentPage === 'brochure' || currentPage === 'contact'
+                ? 'text-[#E63630]'
+                : 'text-gray-300 hover:text-white'
+            }`}
           >
-            Contact us <ChevronRight className="h-5 w-5" />
+            Get Brochure
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleNav('portal')}
+            className="mt-2 bg-[#E63630] text-white py-4 px-6 rounded-full text-xs tracking-[0.15em] uppercase font-bold transition-colors shadow-lg shadow-[#E63630]/20 flex items-center justify-between"
+          >
+            <span>Client Portal</span>
+            <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
@@ -240,13 +259,12 @@ export default function App() {
           <HomePage setCurrentPage={setCurrentPage} />
         )}
         {currentPage === 'about' && <AboutPage />}
-        {currentPage === 'products' && <ProductsPage />}
-        {currentPage === 'contact' && <ContactPage />}
-        {currentPage === 'our legacy' && <LegacyPage />}
+        {currentPage === 'products' && <ProductsPage setCurrentPage={setCurrentPage} />}
+        {(currentPage === 'contact' || currentPage === 'brochure') && <ContactPage />}
+        {currentPage === 'portal' && <PortalPage setCurrentPage={setCurrentPage} />}
       </main>
 
       <footer className="bg-white text-[#060608] py-12 md:py-16 relative overflow-hidden rounded-t-[2.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.05)] border-t border-gray-100">
-        {/* Subtle background industrial pattern */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMDAwIiBmaWxsLW9wYWNpdHk9IjAuMSIvPgo8L3N2Zz4=')]"></div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -283,30 +301,44 @@ export default function App() {
                     </button>
                   </li>
                 ))}
+                <li>
+                  <button onClick={() => handleNav('brochure')} className="hover:text-[#E63630] hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group font-bold uppercase tracking-wider text-xs">
+                     <ChevronRight className="h-4 w-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#E63630]" /> 
+                     <span>Get Brochure</span>
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => handleNav('portal')} className="hover:text-[#E63630] hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group font-bold uppercase tracking-wider text-xs">
+                     <ChevronRight className="h-4 w-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#E63630]" /> 
+                     <span>Client Portal</span>
+                  </button>
+                </li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <h4 className="text-[#060608] text-sm font-secondary font-bold mb-6 uppercase tracking-[0.25em]">Contact Us</h4>
+              <h4 className="text-[#060608] text-sm font-secondary font-bold mb-6 uppercase tracking-[0.25em]">Registered Plant</h4>
               <ul className="space-y-4 font-secondary text-sm text-gray-500">
                 <li className="flex items-start gap-4 group cursor-pointer hover:text-[#060608] transition-colors">
-                  <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300">
+                  <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300 shrink-0">
                     <MapPin className="h-4 w-4" />
                   </div>
-                  <span className="mt-1.5 font-bold tracking-wide text-xs uppercase leading-relaxed">Standard Engineers<br/>Mumbai, India</span>
+                  <span className="mt-1.5 font-bold tracking-wide text-xs uppercase leading-relaxed">
+                    13, Mahalaxmi Ind. Estate,<br/>Sanand, Ahmedabad – 382170
+                  </span>
                 </li>
                 <li className="flex items-center gap-4 group cursor-pointer hover:text-[#060608] transition-colors">
-                  <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300">
+                  <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300 shrink-0">
                     <Phone className="h-4 w-4" />
                   </div>
-                  <span className="font-bold tracking-wide text-xs uppercase">+91-9811440081</span>
+                  <span className="font-bold tracking-wide text-xs uppercase">+91 9824047764</span>
                 </li>
                 <li className="flex items-center gap-4 group cursor-pointer hover:text-[#060608] transition-colors">
-                  <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300">
+                  <div className="p-3 bg-gray-100 rounded-lg group-hover:bg-[#E63630] group-hover:text-white transition-colors duration-300 shrink-0">
                     <Mail className="h-4 w-4" />
                   </div>
-                  <span className="font-bold tracking-wide text-xs uppercase">sales@standardengineers.com</span>
+                  <span className="font-bold tracking-wide text-xs uppercase">sales@standardgasshield.com</span>
                 </li>
               </ul>
             </div>
